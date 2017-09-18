@@ -1,6 +1,5 @@
 # use base image
-# see: https://hub.docker.com/_/openjdk/
-FROM openjdk:8-jre-alpine
+FROM alpine:3.6
 
 MAINTAINER didlich <didlich@t-online.de>
 
@@ -10,12 +9,13 @@ ENV JBOSS_HOME /opt/jboss/wildfly
 
 #http://download.jboss.org/wildfly/8.2.1.Final/wildfly-8.2.1.Final.tar.gz
 
-RUN apk update \
-    && apk add --no-cache --virtual=build-dependencies wget tar tzdata \
-    && apk del build-dependencies \
+RUN set -x \
+    && apk update \
+    && apk add --no-cache openjdk8 wget tar tzdata \
     && rm -rf /var/cache/apk/*
 
-USER root
+ENV JAVA_HOME /usr/lib/jvm/java-1.8-openjdk
+ENV PATH $PATH:/usr/lib/jvm/java-1.8-openjdk/jre/bin:/usr/lib/jvm/java-1.8-openjdk/bin
 
 # Add the WildFly distribution to /opt, and make wildfly the owner of the extracted tar content
 # Make sure the distribution is available from a well-known place
@@ -42,4 +42,3 @@ EXPOSE 8080 9990
 # This will boot WildFly in the standalone mode and bind to all interface
 
 CMD ["/opt/jboss/wildfly/bin/standalone.sh", "-b", "0.0.0.0", "-bmanagement", "0.0.0.0"]
-
