@@ -1,0 +1,12 @@
+version: '2.0'
+services:
+  wildfly:
+    image: alpine-wildfly8.x
+    container_name: wildfly8.x-instance
+    user: "${USER_ID}"
+    ports:
+     - 18080:8080
+     - 19990:9990
+    volumes:
+     - ~/git/docker-alpine-wildfly8.x/deployments:/opt/jboss/wildfly/standalone/deployments
+     - ~/git/docker-alpine-wildfly8.x/log:/opt/jboss/wildfly/standalone/log
