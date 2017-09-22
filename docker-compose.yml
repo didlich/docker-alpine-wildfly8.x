@@ -8,5 +8,4 @@ services:
      - 18080:8080
      - 19990:9990
     volumes:
-     - ~/git/docker-alpine-wildfly8.x/deployments:/opt/jboss/wildfly/standalone/deployments
-     - ~/git/docker-alpine-wildfly8.x/log:/opt/jboss/wildfly/standalone/log
+     - ~/git/docker-alpine-wildfly8.x/shared:/opt/shared

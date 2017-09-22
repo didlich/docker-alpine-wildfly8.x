@@ -1,6 +1,2 @@
-
-deployments/*
-!deployments/README
-
-log/*
-!log/README
+shared/*
+!shared/README

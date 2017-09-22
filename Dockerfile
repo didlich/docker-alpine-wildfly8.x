@@ -30,6 +30,10 @@ RUN cd "/tmp" \
     && ${JBOSS_HOME}/bin/add-user.sh -u wildfly -p wildfly -s \
     && rm -rf "/tmp/"* \
     && chown -R jboss:0 ${JBOSS_HOME} \
+    && chmod -R g+rw ${JBOSS_HOME} \
+    # data exchange folder
+    && mkdir -p /opt/shared \
+    && chown -R jboss:0 ${JBOSS_HOME} \
     && chmod -R g+rw ${JBOSS_HOME}
 
 # Ensure signals are forwarded to the JVM process correctly for graceful shutdown

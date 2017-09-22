@@ -9,7 +9,7 @@ build:
 
 debug:
 
-    docker run -i -t --entrypoint=sh alpine-wildfly8.x
+    docker run -it --entrypoint=sh alpine-wildfly8.x
 
 run:
 
@@ -19,14 +19,14 @@ You can use the **docker** commands below or just trigger **docker-compose**:
 
 or the **docker** commmand:
 
-    docker run -d -p 18080:8080 -p 19990:9990 -u `id -u` -v ~/git/docker-alpine-wildfly8.x/deployments:/opt/jboss/wildfly/standalone/deployments -v ~/git/docker-alpine-wildfly8.x/log:/opt/jboss/wildfly/standalone/log --name wildfly8.x-instance alpine-wildfly8.x
+    docker run -d -p 18080:8080 -p 19990:9990 -u `id -u` -v ~/git/docker-alpine-wildfly8.x/shared:/opt/shared --name wildfly8.x-instance alpine-wildfly8.x
 
 after that use 'docker logs -f wildfly8.x-instance'
 
 
 login:
 
-    docker exec -i -t -u jboss wildfly8.x-instance /bin/sh
+    docker exec -it -u jboss wildfly8.x-instance /bin/sh
 
 logout:
 
