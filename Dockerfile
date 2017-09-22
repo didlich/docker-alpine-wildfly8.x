@@ -11,7 +11,7 @@ ENV JBOSS_HOME /opt/jboss/wildfly
 
 RUN set -x \
     && apk update \
-    && apk add --no-cache openjdk8 wget tar tzdata \
+    && apk add --no-cache openjdk8 wget tar tzdata dpkg \
     && rm -rf /var/cache/apk/*
 
 ENV JAVA_HOME /usr/lib/jvm/java-1.8-openjdk
